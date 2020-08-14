@@ -1,12 +1,13 @@
 import cv2 as cv
 
 
-def show_bboxes(img, bounding_boxes, facial_landmarks=[]):
+def show_bboxes(img, bounding_boxes, facial_landmarks=[], wait=True):
     """Draw bounding boxes and facial landmarks.
     Arguments:
         img: an instance of numpy image.
         bounding_boxes: a float numpy array of shape [n, 5].
         facial_landmarks: a float numpy array of shape [n, 10].
+        wait: if you don't want it to wait for an input to go to the next frame
     """
 
     for b in bounding_boxes:
@@ -17,4 +18,7 @@ def show_bboxes(img, bounding_boxes, facial_landmarks=[]):
             cv.circle(img, (int(p[i]), int(p[i + 5])), 1, (0, 255, 0), -1)
 
     cv.imshow('image', img)
-    cv.waitKey(0)
+    if wait:
+        cv.waitKey(0)
+    else:
+        cv.waitKey(10)
